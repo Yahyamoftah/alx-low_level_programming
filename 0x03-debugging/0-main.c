@@ -1,11 +1,9 @@
 #include "main.h"
 
-
 /**
  * main - tests function which prints
  * Return: returns 0
  */
-
 
 int main(void)
 {
@@ -16,4 +14,3 @@ int main(void)
 
  return (0);
 }
-
