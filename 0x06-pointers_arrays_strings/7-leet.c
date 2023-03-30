@@ -1,8 +1,8 @@
 #include "main.h"
 /**
- * leet - func thta encode into 1337speak
- * @n: an input 
- * Return: returns n value
+ * leet - encode into 1337speak
+ * @n: input value
+ * Return: n value
  */
 char *leet(char *n)
 {
