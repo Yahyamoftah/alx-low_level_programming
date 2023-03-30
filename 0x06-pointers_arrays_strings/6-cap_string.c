@@ -1,10 +1,10 @@
 #include "main.h"
 
 /**
- * cap_string - func that capitalizes 
- * @str: string 
+ * cap_string - Capitalizes all words of a string.
+ * @str: The string will capitalized.
  *
- * Return: Pointer 
+ * Return: A pointer to string.
  */
 char *cap_string(char *str)
 {
