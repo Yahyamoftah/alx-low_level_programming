@@ -17,8 +17,8 @@ int _sqrt_recursion(int n)
 
 /**
  * actual_sqrt_recursion - func recurses to find the real
- * square root 
- * @n: the number 
+ * square root
+ * @n: the number
  * @i: iterator
  *
  * Return: the resulting square root
