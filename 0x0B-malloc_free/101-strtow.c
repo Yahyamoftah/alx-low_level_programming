@@ -30,7 +30,7 @@ char **strtow(char *str)
 	for (c = height = 0; str[c] != '\0'; c++)
 		if (str[c] != ' ' && (str[c + 1] == ' ' || str[c + 1] == '\0'))
 			height++;
-	aout = malloc((height + 1) * sizeof(char *));
+	hope = malloc((height + 1) * sizeof(char *));
 	if (hope == NULL || height == 0)
 	{
 		free(hope);
