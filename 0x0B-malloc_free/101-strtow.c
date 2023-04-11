@@ -1,98 +1,100 @@
 #include "main.h"
 
 /**
- * strtow - Func that Split string into words
- * @str: The string
+ *strtow - Func split
+ *@str: The string
  *
- * Return: The Pointer
+ *Return: The pointer
  */
+
 char **strtow(char *str)
 {
-    char **words_arr;
-    int i, j = 0, temp = 0, word_len = 0, num_words = count_words(str);
+char **split;
+int i, j = 0, temp = 0, size = 0, words = num_words(str);
 
-    if (num_words == 0)
-        return (NULL);
-
-    words_arr = (char **) malloc(sizeof(char *) * (num_words + 1));
-
-    if (words_arr != NULL)
-    {
-        for (i = 0; i <= str_len(str) && num_words; i++)
-        {
-            if ((str[i] != ' ') && (str[i] != '\0'))
-                word_len++;
-            else if (((str[i] == ' ') || (str[i] == '\0')) && i && (str[i - 1] != ' '))
-            {
-                words_arr[j] = (char *) malloc(sizeof(char) * word_len + 1);
-
-                if (words_arr[j] != NULL)
-                {
-                    while (temp < word_len)
-                    {
-                        words_arr[j][temp] = str[(i - word_len) + temp];
-                        temp++;
-                    }
-                    words_arr[j][temp] = '\0';
-                    word_len = temp = 0;
-                    j++;
-                }
-                else
-                {
-                    while (j-- >= 0)
-                        free(words_arr[j]);
-                    free(words_arr);
-                    return (NULL);
-                }
-            }
-        }
-        words_arr[num_words] = NULL;
-        return (words_arr);
-    }
-    else
-        return (NULL);
+if (words == 0)
+return (NULL);
+split = (char **) malloc(sizeof(char *) * (words + 1));
+if (split != NULL)
+{
+for (i = 0; i <= len(str) && words; i++)
+{
+if ((str[i] != ' ') && (str[i] != '\0'))
+size++;
+else if (((str[i] == ' ') || (str[i] == '\0')) && i && (str[i - 1] != ' '))
+{
+split[j] = (char *) malloc(sizeof(char) * size + 1);
+if (split[j] != NULL)
+{
+while (temp < size)
+{
+split[j][temp] = str[(i - size) +temp];
+temp++;
+}
+split[j][temp] = '\0';
+size = temp = 0;
+j++;
+}
+else
+{
+while (j-- >= 0)
+free(split[j]);
+free(split);
+return (NULL);
+}
+}
+}
+split[words] = NULL;
+return (split);
+}
+else
+return (NULL);
 }
 
 /**
- * count_words - number of words in str
- * @str: The string
+ * num_words - Number of words in str
+ *@str: The string
  *
- * Return: Nu the words
+ *Return: number of words
  */
-int count_words(char *str)
+int num_words(char *str)
 {
-    int i = 0, num_words = 0;
+int i = 0, words = 0;
 
-    while (i <= str_len(str))
-    {
-        if ((str[i] != ' ') && (str[i] != '\0'))
-            i++;
-        else if (((str[i] == ' ') || (str[i] == '\0')) && i && (str[i - 1] != ' '))
-        {
-            num_words += 1;
-            i++;
-        }
-        else
-            i++;
-    }
-    return (num_words);
+while (i <= len(str))
+{
+if ((str[i] != ' ') && (str[i] != '\0'))
+{
+i++;
+}
+else if (((str[i] == ' ') || (str[i] == '\0')) && i && (str[i - 1] != ' '))
+{
+words += 1;
+i++;
+}
+else
+{
+i++;
+}
+}
+return (words);
 }
 
 /**
- * str_len - Length str
- * @str: The string
+ * len - func return
+ *@str: The string
  *
- * Return: Length string
+ * Return: The length string
  */
-int str_len(char *str)
+
+int len(char *str)
 {
-    int len = 0;
+int len = 0;
 
-    if (str != NULL)
-    {
-        while (str[len])
-            len++;
-    }
-    return (len);
+if (str != NULL)
+{
+while (str[len])
+len++;
 }
-
+return (len);
+}
