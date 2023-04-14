@@ -4,10 +4,10 @@
 #include <limits.h>
 
 /**
- * main - The miain one
+ * main - The main one
  * @argc: an input
  * @argv: an input
- * Return: an integar
+ * Return: integar
 **/
 
 int main(int argc, char *argv[])
