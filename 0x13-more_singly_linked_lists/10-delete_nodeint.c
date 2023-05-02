@@ -20,7 +20,8 @@ if (index == 0)
 free(current);
 return (1);
 }
-for (i = 0; i < index - 1 && current != NULL; i++)current = current->next;
+for (i = 0; i < index - 1 && current != NULL; i++)
+current = current->next;
 if (current == NULL || current->next == NULL)
 return (-1);
 temp = current->next;
