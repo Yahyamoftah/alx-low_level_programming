@@ -1,11 +1,21 @@
+#include "main.h"
+
 /**
- * print_binary - Prints the binary representation of a number.
+ * binary_to_uint - mian
+ * @b: input
  *
- * @n: The number to print in binary.
+ * Return: 0
  */
-void print_binary(unsigned long int n)
+unsigned int binary_to_uint(const char *b)
 {
-if (n > 1)
-print_binary(n >> 1);
-_putchar((n & 1) + '0');
+unsigned int num = 0;
+if (!b)
+return (0);
+while (*b)
+{
+if (*b != '0' && *b != '1')
+return (0);
+num = (num << 1) + (*b++ - '0');
+}
+return (num);
 }
