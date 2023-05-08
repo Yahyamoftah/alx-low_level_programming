@@ -1,73 +1,78 @@
-#include 'main.h'
+#include "main.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/stat.h>
 
-#define BUFFER_SIZE 1024
+#define USAGE
+#define ERR_CANTREAD
+#define ERR_CANTWRITE
+#define ERR_CANTCLOSE
+#define PERMISSIONS (S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH)
 
-void print_error(const char *message)
-{
-dprintf(STDERR_FILENO, "%s\n", message);
-exit(1);
-}
+/
+ * main -  mian func
+ * @argc: an innp
+ * @argv: an inpp
+ *
+ * Return: 1 on success 0 on failure
+ */
 
 int main(int argc, char *argv[])
 {
+int from_file_descriptor = 0, to_file_descriptor = 0;
+ssize_t bytes_read;
+char buffer[buff_size];
+
 if (argc != 3)
 {
-print_error("Usage: cp file_from file_to");
+dprintf(STDERR_FILENO, USAGE);
+exit(97);
 }
 
-const char *file_from = argv[1];
-const char *file_to = argv[2];
-
-int fd_from = open(file_from, O_RDONLY);
-if (fd_from == -1)
+from_file_descriptor = open(argv[1], O_RDONLY);
+if (from_file_descriptor == -1)
 {
-dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
+dprintf(STDERR_FILENO, ERR_CANTREAD, argv[1]);
 exit(98);
 }
 
-int fd_to = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
-if (fd_to == -1)
+to_file_descriptor = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, PERMISSIONS);
+if (to_file_descriptor == -1)
 {
-dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
+dprintf(STDERR_FILENO, ERR_CANTWRITE, argv[2]);
 exit(99);
 }
 
-char buffer[BUFFER_SIZE];
-ssize_t bytes_read, bytes_written;
-
-while ((bytes_read = read(fd_from, buffer, BUFFER_SIZE)) > 0)
+while ((bytes_read = read(from_file_descriptor, buffer, buff_size)) > 0)
 {
-bytes_written = write(fd_to, buffer, bytes_read);
-if (bytes_written == -1)
+ssize_t bytes_written = write(to_file_descriptor, buffer, bytes_read);
+if (bytes_written != bytes_read)
 {
-dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
+dprintf(STDERR_FILENO, ERR_CANTWRITE, argv[2]);
 exit(99);
 }
 }
 
 if (bytes_read == -1)
 {
-dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
+dprintf(STDERR_FILENO, ERR_CANTREAD, argv[1]);
 exit(98);
 }
 
-if (close(fd_from) == -1)
+int from_close_result = close(from_file_descriptor);
+int to_close_result = close(to_file_descriptor);
+
+if (from_close_result)
 {
-dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_from);
+dprintf(STDERR_FILENO, ERR_CANTCLOSE, from_file_descriptor);
 exit(100);
 }
 
-if (close(fd_to) == -1)
+if (to_close_result)
 {
-dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_to);
+dprintf(STDERR_FILENO, ERR_CANTCLOSE, to_file_descriptor);
 exit(100);
 }
-return (0);
+
+return EXIT_SUCCESS;
 }
 
