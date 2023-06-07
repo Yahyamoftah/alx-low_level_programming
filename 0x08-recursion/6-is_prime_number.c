@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- *comparar - main
+ *funcc - main
  *@n: num
  *@y: num
  *Return: square root
