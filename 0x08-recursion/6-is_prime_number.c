@@ -1,40 +1,34 @@
 #include "main.h"
 
 /**
- * is_prime_number - main
- * @n: num
- * Return: 1
+ *comparar - main
+ *@n: num
+ *@y: num
+ *Return: square root
  */
 
-int is_prime_number(int n)
+int funcc(int n, int y)
 {
-return (is_prime_recursive(n, 2));
+int count = 0;
+if (y <= n)
+{
+if (n % y == 0)
+count++;
+return (count + funcc(n, y + 1));
+}
+return (count);
 }
 
 /**
- * is_prime_recursive - main
- * @n: num
- * @divisor: nuim
- * Return: 1
- */
+*is_prime_number - mian
+*@n: num
+*Return: 1
+*/
 
-int is_prime_recursive(int n, int divisor)
+int is_prime_number(int n)
 {
-if (n < 2)
-{
-return (0);
-}
-
-if (divisor * divisor > n)
-{
+if (funcc(n, 1) == 2)
 return (1);
-}
-
-if (n % divisor == 0)
-{
+else
 return (0);
 }
-
-return (is_prime_recursive(n, divisor + 1));
-}
-
