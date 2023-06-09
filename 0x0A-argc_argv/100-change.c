@@ -8,6 +8,7 @@
  * Return: 0 on success, 1 on error
  */
 
+
 int main(int argc, char *argv[])
 {
 if (argc != 2)
@@ -24,17 +25,24 @@ printf("0\n");
 return (0);
 }
 
-int coinValues[] = {25, 10, 5, 2, 1};
-int numCoins = 0;
-int numCoinTypes = sizeof(coinValues) / sizeof(coinValues[0]);
+int coins = 0;
 
-for (int i = 0; i < numCoinTypes; i++)
-{
-numCoins += cents / coinValues[i];
-cents %= coinValues[i];
-}
+coins += cents / 25;
+cents %= 25;
 
-printf("%d\n", numCoins);
+coins += cents / 10;
+cents %= 10;
+
+coins += cents / 5;
+cents %= 5;
+
+coins += cents / 2;
+cents %= 2;
+
+coins += cents;
+
+printf("%d\n", coins);
+
 return (0);
 }
 
