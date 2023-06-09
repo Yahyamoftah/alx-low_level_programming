@@ -18,7 +18,7 @@ int numCoinTypes = sizeof(coins) / sizeof(coins[0]);
 if (argc != 2)
 {
 printf("Error\n");
-return 1;
+return (1);
 }
 
 amount = atoi(argv[1]);
@@ -33,6 +33,6 @@ numCoins++;
 }
 
 printf("%d\n", numCoins);
-return 0;
+return (0);
 }
 
