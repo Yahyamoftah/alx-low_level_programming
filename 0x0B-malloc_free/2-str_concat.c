@@ -1,42 +1,48 @@
+#include "main.h"
+#include <stdio.h>
 #include <stdlib.h>
-#include <stddef.h>
 
 /**
- * str_concat - main
+ * str_concat - str
  * @s1: str
  * @s2: str
  * Return: ptr
  */
+
 char *str_concat(char *s1, char *s2)
 {
-char *conc;
-unsigned int length1 = 0;
-unsigned int length2 = 0;
-unsigned int i, j;
+unsigned int size1 = 0, size2 = 0;
+char *src_ptr, *dest_ptr;
 
-if (s1 == NULL)
+src_ptr = s1;
+if (s1 != NULL)
+{
+while (*src_ptr++)
+size1++;
+}
+else
 s1 = "";
-if (s2 == NULL)
+
+src_ptr = s2;
+if (s2 != NULL)
+{
+while (*src_ptr++)
+size2++;
+}
+else
 s2 = "";
 
-/* Get the lengths of the strings */
-while (s1[length1] != '\0')
-length1++;
-while (s2[length2] != '\0')
-length2++;
+dest_ptr = malloc(size1 + size2 + 1);
+if (!dest_ptr)
+return (NULL);
 
-conc = malloc((length1 + length2 + 1) * sizeof(char));
-if (concatenated == NULL)
-return NULL;
+src_ptr = dest_ptr;
+while (*s1)
+*src_ptr++ = *s1++;
+while (*s2)
+*src_ptr++ = *s2++;
+*src_ptr = '\0';
 
-for (i = 0; i < length1; i++)
-conc[i] = s1[i];
-
-for (j = 0; j < length2; j++)
-conc[length1 + j] = s2[j];
-
-conc[length1 + length2] = '\0';
-
-return conc;
+return (dest_ptr);
 }
 
