@@ -18,7 +18,7 @@ return (NULL);
 for (x = 0; str[x] != '\0'; x++)
 ;
 x++;
-s = malloc(x * sizeof(*s));
+s = malloc(x *sizeof(*s));
 if (s == 0)
 return (NULL);
 for (y = 0; y < x; y++)
