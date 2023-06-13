@@ -20,14 +20,15 @@ len = 0;
 for (i = 0; i < ac; i++)
 {
 j = 0;
-while (av[i][j] != '\0'){
+while (av[i][j] != '\0')
+{
 len++;
 j++;
 }
 len++;
 }
 
-str = malloc((len + 1) *sizeof(char));
+str = malloc((len + 1) * sizeof(char));
 if (str == NULL)
 return (NULL);
 
