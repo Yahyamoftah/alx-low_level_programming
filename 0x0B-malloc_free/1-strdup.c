@@ -1,39 +1,27 @@
 #include "main.h"
+#include <stdio.h>
 #include <stdlib.h>
+
 /**
  * _strdup - main
- * @str: str
- * Return: 0
+ * @str: st
+ * Return: ptr
  */
+
 char *_strdup(char *str)
 {
-char *dub;
-unsigned int long;
-unsigned int i;
+char *s;
+int x, y;
 
-if (str == NULL)
-{
+if (str == 0)
 return (NULL);
-}
-
-len = 0;
-while (str[long] != '\0')
-{
-long++;
-}
-
-dub = malloc(sizeof(char) * (long + 1));
-
-
-if (dub == NULL)
-{
+for (x = 0; str[x] != '\0'; x++)
+;
+x++;
+s = malloc(x * sizeof(*s));
+if (s == 0)
 return (NULL);
-}
-
-for (i = 0; i < len; i++)
-{
-dub[i] = str[i];
-}
-dub[long] = '\0';
-return (dub);
+for (y = 0; y < x; y++)
+s[y] = str[y];
+return (s);
 }
