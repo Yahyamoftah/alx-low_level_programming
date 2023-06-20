@@ -2,7 +2,7 @@
 #define _HEADER_
 
 /**
- * struct dog - main 
+ * struct dog - main
  * @name: input
  * @age: input
  * @owner: input
